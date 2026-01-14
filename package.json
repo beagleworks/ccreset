@@ -1,0 +1,43 @@
+{
+  "name": "ccreset",
+  "version": "1.0.0",
+  "description": "Display Claude Code usage reset time for statusline",
+  "type": "module",
+  "bin": {
+    "ccreset": "./src/index.ts"
+  },
+  "files": [
+    "src"
+  ],
+  "scripts": {
+    "start": "bun run src/index.ts",
+    "typecheck": "bunx tsc --noEmit"
+  },
+  "keywords": [
+    "claude",
+    "claude-code",
+    "cli",
+    "reset-timer",
+    "statusline",
+    "bun"
+  ],
+  "author": {
+    "name": "びーぐる@Beagle Works",
+    "url": "https://github.com/beagleworks"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/beagleworks/ccreset.git"
+  },
+  "homepage": "https://github.com/beagleworks/ccreset#readme",
+  "bugs": {
+    "url": "https://github.com/beagleworks/ccreset/issues"
+  },
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  }
+}
