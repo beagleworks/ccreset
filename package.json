@@ -1,6 +1,6 @@
 {
   "name": "ccreset",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Display Claude Code usage reset time for statusline",
   "type": "module",
   "bin": {
