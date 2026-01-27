@@ -5,6 +5,7 @@
 A CLI tool to display Claude Code usage reset time. Ideal for statusline display. Can also be used as a display component for [ccstatusline](https://github.com/sirmalloc/ccstatusline).
 
 ![ccreset output highlighted in red — works great with ccstatusline](./inaction.png)
+
 *Red circle: ccreset in action. Used alongside the awesome [ccstatusline](https://github.com/sirmalloc/ccstatusline)*
 
 ## Installation
