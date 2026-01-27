@@ -5,6 +5,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.2] - 2025-01-27
+
+### Changed
+
+- Error handling now outputs fallback display (`5h:--(-%) | 7d:--(-%)`) instead of `[Exit: 1]`
+- Exit code is always 0 (no more non-zero exit on API errors)
+
 ## [1.0.1] - 2025-01-14
 
 ### Changed

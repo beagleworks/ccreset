@@ -85,3 +85,10 @@ export function formatOutput(times: ResetTimes): string {
   const sevenDay = `7d:${times.sevenDay.timeRemaining}(${times.sevenDay.usage}%)`;
   return `${fiveHour} | ${sevenDay}`;
 }
+
+/**
+ * エラー時のフォールバック出力を生成
+ */
+export function formatFallbackOutput(): string {
+  return "5h:--(-%) | 7d:--(-%)";
+}
