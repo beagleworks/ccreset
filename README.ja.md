@@ -4,6 +4,9 @@
 
 Claude Code の使用量リセット時間を表示する CLI ツール。statusline での表示に最適。[ccstatusline](https://github.com/sirmalloc/ccstatusline) の表示パーツとしても利用可能。
 
+![ccstatusline と併用した ccreset の表示例](./inaction.png)
+*赤丸部分が ccreset の出力。[ccstatusline](https://github.com/sirmalloc/ccstatusline) と併用した例*
+
 ## インストール
 
 ```bash
