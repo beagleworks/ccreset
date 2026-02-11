@@ -122,3 +122,7 @@ If the Git tag (for example `v1.1.1`) and `package.json` version do not match, t
 ## License
 
 MIT
+
+## GitHub Pages
+
+The landing page (`docs/`) is deployed by `.github/workflows/pages.yml`. In GitHub `Settings > Pages`, set Source to `GitHub Actions`.

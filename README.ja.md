@@ -122,3 +122,7 @@ git push origin main --follow-tags
 ## ライセンス
 
 MIT
+
+## GitHub Pages
+
+ランディングページ（`docs/`）は `.github/workflows/pages.yml` でデプロイします。GitHub の `Settings > Pages` の Source は `GitHub Actions` を選択してください。
