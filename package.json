@@ -4,7 +4,7 @@
   "description": "Display Claude Code usage reset time for statusline",
   "type": "module",
   "bin": {
-    "ccreset": "./dist/index.js"
+    "ccreset": "dist/index.js"
   },
   "files": [
     "dist"
