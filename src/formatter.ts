@@ -1,4 +1,4 @@
-import type { UsageResponse, ResetTimes, ResetInfo } from "./types";
+import type { UsageResponse, ResetTimes } from "./types.js";
 
 /**
  * ミリ秒を人間が読める形式に変換
@@ -42,7 +42,11 @@ function getTimeRemaining(resetAt: string | null): string {
     return "-";
   }
 
-  const resetTime = new Date(resetAt).getTime();
+  const resetTime = Date.parse(resetAt);
+  if (Number.isNaN(resetTime)) {
+    throw new Error(`不正なリセット時刻です: ${resetAt}`);
+  }
+
   const now = Date.now();
   const remaining = resetTime - now;
 

@@ -1,4 +1,4 @@
-import type { UsageResponse } from "./types";
+import type { UsageResponse } from "./types.js";
 
 const API_ENDPOINT = "https://api.anthropic.com/api/oauth/usage";
 const ANTHROPIC_BETA_HEADER = "oauth-2025-04-20";

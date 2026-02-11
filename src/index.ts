@@ -1,8 +1,12 @@
-#!/usr/bin/env bun
+#!/usr/bin/env node
 
-import { getAccessToken } from "./credentials";
-import { fetchUsage } from "./api";
-import { formatResetTimes, formatOutput, formatFallbackOutput } from "./formatter";
+import { getAccessToken } from "./credentials.js";
+import { fetchUsage } from "./api.js";
+import {
+  formatResetTimes,
+  formatOutput,
+  formatFallbackOutput,
+} from "./formatter.js";
 
 async function main(): Promise<void> {
   try {

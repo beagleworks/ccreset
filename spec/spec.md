@@ -5,6 +5,11 @@
 Claude Codeの使用量リセット時間と使用率を表示するCLIツール。
 statuslineでの表示を想定。
 
+## 実行環境
+
+- Node.js 18+ または Bun
+- npm / pnpm / bunx いずれの実行方法でも利用可能
+
 ## 出力形式
 
 ```
@@ -111,15 +116,22 @@ statusline用途のため、エラー時も一貫した形式で出力する。
 - API呼び出し失敗（401, 5xx等）
 - ネットワークエラー
 - タイムアウト（2秒）
+- `resets_at` が `null` 以外で、ISO 8601として解釈不能な値
 
 ---
 
 ## 使用方法
 
+### 事前ビルド（ローカル実行時）
+
+```bash
+npm run build
+```
+
 ### ローカル実行
 
 ```bash
-bun run src/index.ts
+node dist/index.js
 ```
 
 ### bunx 実行
@@ -128,15 +140,40 @@ bun run src/index.ts
 bunx ccreset
 ```
 
+### npx 実行
+
+```bash
+npx ccreset
+```
+
+### pnpm 実行
+
+```bash
+pnpm dlx ccreset
+```
+
 ### statusline 設定
 
 `~/.claude/settings.json`:
+
+#### Bun を使う場合
 
 ```json
 {
   "statusLine": {
     "type": "command",
     "command": "bunx ccreset"
+  }
+}
+```
+
+#### Node.js のみで使う場合
+
+```json
+{
+  "statusLine": {
+    "type": "command",
+    "command": "npx ccreset"
   }
 }
 ```

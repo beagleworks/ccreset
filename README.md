@@ -28,8 +28,22 @@ npm install -g ccreset
 
 ## Usage
 
+### Package execution
+
 ```bash
-ccreset
+bunx ccreset
+# or
+npx ccreset
+# or
+pnpm dlx ccreset
+```
+
+### Local execution (from source)
+
+```bash
+npm install
+npm run build
+node dist/index.js
 ```
 
 ### Output
@@ -49,7 +63,9 @@ ccreset
 
 ## Claude Code Statusline
 
-Add the following to `~/.claude/settings.json`:
+Add the following to `~/.claude/settings.json`.
+
+### Bun runtime
 
 ```json
 {
@@ -60,9 +76,20 @@ Add the following to `~/.claude/settings.json`:
 }
 ```
 
+### Node.js-only runtime
+
+```json
+{
+  "statusLine": {
+    "type": "command",
+    "command": "npx ccreset"
+  }
+}
+```
+
 ## Requirements
 
-- [Bun](https://bun.sh/) runtime (recommended) or Node.js
+- Node.js 18+ or [Bun](https://bun.sh/) runtime
 - Logged into Claude Code (`~/.claude/.credentials.json` required)
 
 ## How it works
