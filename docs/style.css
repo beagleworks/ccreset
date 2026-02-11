@@ -236,6 +236,38 @@ main {
   color: var(--text-muted);
 }
 
+/* Requirements List */
+.requirements-list {
+  list-style: none;
+  display: grid;
+  gap: 0.75rem;
+}
+
+.requirements-list li {
+  padding: 0.875rem 1rem;
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  color: var(--text-primary);
+  font-size: 0.95rem;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.requirements-list li a {
+  color: var(--link-color);
+  text-decoration: none;
+}
+
+.requirements-list li a:hover {
+  text-decoration: underline;
+}
+
+.requirements-list li code {
+  font-family: 'SF Mono', 'Fira Code', 'Fira Mono', Menlo, Consolas, monospace;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
 /* Output Example */
 .output-example {
   background-color: var(--code-bg);

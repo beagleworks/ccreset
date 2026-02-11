@@ -182,23 +182,59 @@
       <h2 class="section-title" data-i18n="statusline.title">Statusline Configuration</h2>
       <p class="section-description" data-i18n="statusline.description">Add to your Claude Code settings file:</p>
       <p class="file-path"><code>~/.claude/settings.json</code></p>
-      <div class="code-block code-block-large">
-        <pre><code>{
+
+      <div class="install-methods">
+        <div class="install-method">
+          <h3 class="method-title" data-i18n="statusline.bun">Bun runtime</h3>
+          <div class="code-block code-block-large">
+            <pre><code>{
   "statusLine": {
     "type": "command",
     "command": "bunx ccreset"
   }
 }</code></pre>
-        <button class="copy-btn" data-copy='{"statusLine":{"type":"command","command":"bunx ccreset"}}' aria-label="Copy to clipboard">
-          <svg class="icon-copy" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
-            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
-          </svg>
-          <svg class="icon-check" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <polyline points="20 6 9 17 4 12"/>
-          </svg>
-        </button>
+            <button class="copy-btn" data-copy='{"statusLine":{"type":"command","command":"bunx ccreset"}}' aria-label="Copy to clipboard">
+              <svg class="icon-copy" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+              </svg>
+              <svg class="icon-check" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="20 6 9 17 4 12"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <div class="install-method">
+          <h3 class="method-title" data-i18n="statusline.node">Node.js-only runtime</h3>
+          <div class="code-block code-block-large">
+            <pre><code>{
+  "statusLine": {
+    "type": "command",
+    "command": "npx ccreset"
+  }
+}</code></pre>
+            <button class="copy-btn" data-copy='{"statusLine":{"type":"command","command":"npx ccreset"}}' aria-label="Copy to clipboard">
+              <svg class="icon-copy" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+              </svg>
+              <svg class="icon-check" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="20 6 9 17 4 12"/>
+              </svg>
+            </button>
+          </div>
+        </div>
       </div>
+    </section>
+
+    <!-- Requirements Section -->
+    <section class="section">
+      <h2 class="section-title" data-i18n="requirements.title">Requirements</h2>
+      <ul class="requirements-list">
+        <li data-i18n="requirements.runtime">Node.js 18+ or <a href="https://bun.sh/" target="_blank" rel="noopener">Bun</a> runtime</li>
+        <li data-i18n="requirements.credentials">Logged into Claude Code (<code>~/.claude/.credentials.json</code> required)</li>
+      </ul>
     </section>
   </main>
 
@@ -242,7 +278,12 @@
         'install.alternatives': 'Alternatives',
         'install.global': 'Global Install',
         'statusline.title': 'Statusline Configuration',
-        'statusline.description': 'Add to your Claude Code settings file:'
+        'statusline.description': 'Add to your Claude Code settings file:',
+        'statusline.bun': 'Bun runtime',
+        'statusline.node': 'Node.js-only runtime',
+        'requirements.title': 'Requirements',
+        'requirements.runtime': 'Node.js 18+ or <a href="https://bun.sh/" target="_blank" rel="noopener">Bun</a> runtime',
+        'requirements.credentials': 'Logged into Claude Code (<code>~/.claude/.credentials.json</code> required)'
       },
       ja: {
         'hero.title': 'Claude Code の使用量リセット時間を表示',
@@ -261,7 +302,12 @@
         'install.alternatives': '代替',
         'install.global': 'グローバルインストール',
         'statusline.title': 'Statusline 設定',
-        'statusline.description': 'Claude Code の設定ファイルに追加:'
+        'statusline.description': 'Claude Code の設定ファイルに追加:',
+        'statusline.bun': 'Bun ランタイム',
+        'statusline.node': 'Node.js のみで使う場合',
+        'requirements.title': '必要条件',
+        'requirements.runtime': 'Node.js 18+ または <a href="https://bun.sh/" target="_blank" rel="noopener">Bun</a> ランタイム',
+        'requirements.credentials': 'Claude Code にログイン済み（<code>~/.claude/.credentials.json</code> が必要）'
       }
     };
 
@@ -310,7 +356,11 @@
       document.querySelectorAll('[data-i18n]').forEach(el => {
         const key = el.getAttribute('data-i18n');
         if (t[key]) {
-          el.textContent = t[key];
+          if (t[key].includes('<')) {
+            el.innerHTML = t[key];
+          } else {
+            el.textContent = t[key];
+          }
         }
       });
     }

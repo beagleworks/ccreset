@@ -180,6 +180,40 @@ pnpm dlx ccreset
 
 ---
 
+## ランディングページ（GitHub Pages）
+
+### 概要
+
+`docs/` ディレクトリが GitHub Pages のランディングページとして公開されている。
+
+### 公開URL
+
+```
+https://beagleworks.github.io/ccreset/
+```
+
+### 構成ファイル
+
+| ファイル | 役割 |
+|----------|------|
+| `docs/index.html` | LP本体（単一HTMLファイル） |
+| `docs/style.css` | スタイルシート |
+| `docs/assets/inaction.png` | スクリーンショット画像 |
+
+### 機能
+
+- **多言語対応**: EN / JA の切り替えボタン（`data-i18n` 属性 + JavaScript で翻訳を切り替え、`localStorage` で保持）
+- **テーマ切り替え**: ダーク / ライトモード（CSS変数 + `data-theme` 属性、`localStorage` で保持）
+- **コピーボタン**: インストールコマンドや設定JSONをワンクリックでコピー
+
+### デプロイ
+
+- `.github/workflows/pages.yml` による自動デプロイ
+- トリガー: `main` ブランチへの push（`docs/**` または workflow ファイル自体の変更時）
+- 手動実行（`workflow_dispatch`）も可能
+
+---
+
 ## npm公開CI仕様（GitHub Actions）
 
 ### 対象workflow
