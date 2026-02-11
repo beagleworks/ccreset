@@ -11,16 +11,19 @@ A CLI tool to display Claude Code usage reset time. Ideal for statusline display
 ## Installation
 
 ```bash
-# Run directly with bunx (recommended)
+# Recommended: run without global install
 bunx ccreset
 
-# Run with npx
+# or with npx
 npx ccreset
 
-# Run with pnpm
+# or with pnpm
 pnpm dlx ccreset
+```
 
-# Global install
+### Optional: Global install
+
+```bash
 bun add -g ccreset
 # or
 npm install -g ccreset

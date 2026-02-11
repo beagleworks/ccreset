@@ -11,16 +11,19 @@ Claude Code の使用量リセット時間を表示する CLI ツール。status
 ## インストール
 
 ```bash
-# bunx で直接実行（推奨）
+# 推奨: グローバルインストールせず実行
 bunx ccreset
 
-# npx で実行
+# または npx
 npx ccreset
 
-# pnpm で実行
+# または pnpm
 pnpm dlx ccreset
+```
 
-# グローバルインストール
+### 任意: グローバルインストール
+
+```bash
 bun add -g ccreset
 # または
 npm install -g ccreset
