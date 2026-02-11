@@ -99,6 +99,26 @@ Add the following to `~/.claude/settings.json`.
 
 Uses Claude Code's OAuth credentials to fetch usage information from the Anthropic API.
 
+## npm Auto Publish (GitHub Actions)
+
+This repo includes CI (`.github/workflows/npm-publish.yml`) that automatically publishes to npm when you push a tag like `v1.2.3`.
+
+Prerequisites:
+
+1. Add a Trusted Publisher in your npm package settings
+2. Select `GitHub Actions` as the provider and bind this repository and workflow (`.github/workflows/npm-publish.yml`)
+3. No `NPM_TOKEN` GitHub secret is required
+
+Release flow:
+
+```bash
+# Example: release 1.1.1
+npm version 1.1.1
+git push origin main --follow-tags
+```
+
+If the Git tag (for example `v1.1.1`) and `package.json` version do not match, the workflow fails and does not publish.
+
 ## License
 
 MIT

@@ -177,3 +177,36 @@ pnpm dlx ccreset
   }
 }
 ```
+
+---
+
+## npm公開CI仕様（GitHub Actions）
+
+### 対象workflow
+
+- `.github/workflows/npm-publish.yml`
+
+### 実行トリガー
+
+- `v*.*.*` 形式のGitタグpush時のみ実行
+- 例: `v1.2.3`
+
+### 実行手順
+
+1. `npm ci`
+2. `npm run typecheck`
+3. `npm run build`
+4. タグ版数（`vX.Y.Z`）と `package.json` の `version` 一致チェック
+5. `npm publish --provenance --access public`
+
+### 認証・セキュリティ要件
+
+- npm Trusted Publishing（OIDC）を使用
+- npmパッケージ設定で Trusted Publisher（Provider: GitHub Actions）を構成済みであること
+- GitHub Actions の `NPM_TOKEN` シークレットは使用しない
+- workflow permissions は `id-token: write` を含むこと
+
+### 失敗条件
+
+- タグ版数と `package.json` の `version` が不一致
+- Trusted Publisher 未設定または権限不足

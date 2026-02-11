@@ -99,6 +99,26 @@ node dist/index.js
 
 Claude Code の OAuth 認証情報を使用して Anthropic API から使用量情報を取得します。
 
+## npm 自動公開（GitHub Actions）
+
+このリポジトリには、`v1.2.3` のようなタグを push すると npm に自動公開する CI（`.github/workflows/npm-publish.yml`）が含まれます。
+
+事前設定:
+
+1. npm のパッケージ設定で Trusted Publisher を追加する
+2. Provider に `GitHub Actions` を選び、このリポジトリと workflow（`.github/workflows/npm-publish.yml`）を紐づける
+3. GitHub 側の `NPM_TOKEN` シークレットは不要（使いません）
+
+公開手順:
+
+```bash
+# 例: 1.1.1 を公開する場合
+npm version 1.1.1
+git push origin main --follow-tags
+```
+
+タグ（`v1.1.1`）と `package.json` の `version` が一致しない場合、CI は失敗して公開しません。
+
 ## ライセンス
 
 MIT
