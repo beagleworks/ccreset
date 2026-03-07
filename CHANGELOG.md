@@ -5,6 +5,22 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.2.0] - 2026-03-08
+
+### Added
+
+- Added Node.js standard-library tests for formatter, credentials, API, and CLI execution paths
+
+### Changed
+
+- Added `npm test` and wired npm publish CI to run tests before publishing
+- Declared Node.js `>=18` in package metadata
+
+### Fixed
+
+- Made README screenshots resolve correctly in published package contexts
+- Fixed GitHub Pages landing page logo navigation for the project-site path
+
 ## [1.1.1] - 2026-02-11
 
 ### Fixed

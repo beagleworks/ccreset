@@ -9,6 +9,7 @@ statuslineでの表示を想定。
 
 - Node.js 18+ または Bun
 - npm / pnpm / bunx いずれの実行方法でも利用可能
+- npm 公開パッケージのメタデータで、Node.js サポート範囲として `>=18` を宣言する
 
 ## 出力形式
 
@@ -134,6 +135,15 @@ npm run build
 node dist/index.js
 ```
 
+### テスト実行
+
+```bash
+npm test
+```
+
+- テストは Node.js 標準の test runner を使い、追加のテストフレームワーク依存を導入しない
+- `npm test` はビルド済みの `dist/` を対象に実行する
+
 ### bunx 実行
 
 ```bash
@@ -151,6 +161,10 @@ npx ccreset
 ```bash
 pnpm dlx ccreset
 ```
+
+### 配布メタデータ
+
+- `package.json` に `engines.node` を設定し、未サポートの Node.js バージョン利用時にパッケージマネージャが警告または拒否できるようにする
 
 ### statusline 設定
 
@@ -205,6 +219,7 @@ https://beagleworks.github.io/ccreset/
 - **多言語対応**: EN / JA の切り替えボタン（`data-i18n` 属性 + JavaScript で翻訳を切り替え、`localStorage` で保持）
 - **テーマ切り替え**: ダーク / ライトモード（CSS変数 + `data-theme` 属性、`localStorage` で保持）
 - **コピーボタン**: インストールコマンドや設定JSONをワンクリックでコピー
+- **プロジェクトサイト対応**: GitHub Pages の project site (`/ccreset/`) 配下でも内部リンクが壊れないよう、サイト内リンクは相対パスを使う
 
 ### デプロイ
 
@@ -229,9 +244,10 @@ https://beagleworks.github.io/ccreset/
 
 1. `npm ci`
 2. `npm run typecheck`
-3. `npm run build`
-4. タグ版数（`vX.Y.Z`）と `package.json` の `version` 一致チェック
-5. `npm publish --provenance --access public`
+3. `npm test`
+4. `npm run build`
+5. タグ版数（`vX.Y.Z`）と `package.json` の `version` 一致チェック
+6. `npm publish --provenance --access public`
 
 ### 認証・セキュリティ要件
 
@@ -239,6 +255,7 @@ https://beagleworks.github.io/ccreset/
 - npmパッケージ設定で Trusted Publisher（Provider: GitHub Actions）を構成済みであること
 - GitHub Actions の `NPM_TOKEN` シークレットは使用しない
 - workflow permissions は `id-token: write` を含むこと
+- npm に表示される README は、公開 tarball に含まれないローカル画像へ依存しないこと（公開物に含めるか、外部から到達可能な URL を使う）
 
 ### 失敗条件
 

@@ -1,5 +1,7 @@
 #!/usr/bin/env node
 
+import { resolve } from "node:path";
+import { pathToFileURL } from "node:url";
 import { getAccessToken } from "./credentials.js";
 import { fetchUsage } from "./api.js";
 import {
@@ -8,20 +10,41 @@ import {
   formatFallbackOutput,
 } from "./formatter.js";
 
-async function main(): Promise<void> {
+interface RunDependencies {
+  getAccessTokenFn?: typeof getAccessToken;
+  fetchUsageFn?: typeof fetchUsage;
+  log?: (message: string) => void;
+}
+
+export async function run({
+  getAccessTokenFn = getAccessToken,
+  fetchUsageFn = fetchUsage,
+  log = console.log,
+}: RunDependencies = {}): Promise<void> {
   try {
     // 1. 認証情報を取得
-    const accessToken = await getAccessToken();
+    const accessToken = await getAccessTokenFn();
 
     // 2. APIを呼び出し
-    const usage = await fetchUsage(accessToken);
+    const usage = await fetchUsageFn(accessToken);
 
     // 3. フォーマットして出力
     const times = formatResetTimes(usage);
-    console.log(formatOutput(times));
+    log(formatOutput(times));
   } catch {
-    console.log(formatFallbackOutput());
+    log(formatFallbackOutput());
   }
 }
 
-main();
+function isExecutedDirectly(): boolean {
+  const entryPoint = process.argv[1];
+  if (!entryPoint) {
+    return false;
+  }
+
+  return import.meta.url === pathToFileURL(resolve(entryPoint)).href;
+}
+
+if (isExecutedDirectly()) {
+  void run();
+}
