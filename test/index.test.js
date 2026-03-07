@@ -1,7 +1,10 @@
 import assert from "node:assert/strict";
+import { execFile } from "node:child_process";
+import { promisify } from "node:util";
 import test from "node:test";
 import { run } from "../dist/index.js";
 
+const execFileAsync = promisify(execFile);
 const originalDateNow = Date.now;
 
 test.afterEach(() => {
@@ -48,4 +51,16 @@ test("run falls back to placeholder output when dependencies fail", async () => 
   });
 
   assert.deepEqual(logs, ["5h:--(-%) | 7d:--(-%)"]);
+});
+
+test("CLI entrypoint prints fallback output when executed directly", async () => {
+  const { stdout } = await execFileAsync(process.execPath, ["dist/cli.js"], {
+    cwd: process.cwd(),
+    env: {
+      ...process.env,
+      HOME: "/tmp/ccreset-empty-home",
+    },
+  });
+
+  assert.equal(stdout.trim(), "5h:--(-%) | 7d:--(-%)");
 });

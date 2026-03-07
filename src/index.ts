@@ -1,7 +1,3 @@
-#!/usr/bin/env node
-
-import { resolve } from "node:path";
-import { pathToFileURL } from "node:url";
 import { getAccessToken } from "./credentials.js";
 import { fetchUsage } from "./api.js";
 import {
@@ -34,17 +30,4 @@ export async function run({
   } catch {
     log(formatFallbackOutput());
   }
-}
-
-function isExecutedDirectly(): boolean {
-  const entryPoint = process.argv[1];
-  if (!entryPoint) {
-    return false;
-  }
-
-  return import.meta.url === pathToFileURL(resolve(entryPoint)).href;
-}
-
-if (isExecutedDirectly()) {
-  void run();
 }
