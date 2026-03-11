@@ -49,20 +49,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Invalid `resets_at` values now trigger full fallback output (`5h:--(-%) | 7d:--(-%)`)
 - Trimmed OAuth access token value from credentials before API requests
 
-## [1.0.3] - 2025-01-28
+## [1.0.3] - 2026-01-28
 
 ### Fixed
 
 - Add 2-second timeout to API calls to prevent `[Timeout]` display in Claude Code statusline
 
-## [1.0.2] - 2025-01-27
+## [1.0.2] - 2026-01-27
 
 ### Changed
 
 - Error handling now outputs fallback display (`5h:--(-%) | 7d:--(-%)`) instead of `[Exit: 1]`
 - Exit code is always 0 (no more non-zero exit on API errors)
 
-## [1.0.1] - 2025-01-14
+## [1.0.1] - 2026-01-14
 
 ### Changed
 
@@ -74,7 +74,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Japanese README (README.ja.md)
 - Link to ccstatusline in README
 
-## [1.0.0] - 2025-01-14
+## [1.0.0] - 2026-01-14
 
 ### Added
 
