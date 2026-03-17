@@ -43,3 +43,17 @@ export interface ResetTimes {
   fiveHour: ResetInfo;
   sevenDay: ResetInfo;
 }
+
+/**
+ * APIレスポンスの永続キャッシュ
+ */
+export interface UsageCache {
+  version: 1;
+  lastSuccess: CachedUsage | null;
+  rateLimitUntil: number | null;
+}
+
+export interface CachedUsage {
+  fetchedAt: number;
+  usage: UsageResponse;
+}

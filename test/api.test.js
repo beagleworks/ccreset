@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import test from "node:test";
-import { fetchUsage } from "../dist/api.js";
+import { fetchUsage, isUsageApiError } from "../dist/api.js";
 
 const originalFetch = globalThis.fetch;
 
@@ -55,10 +55,16 @@ test("fetchUsage throws response details when the API returns an error", async (
     text: async () => "unauthorized",
   });
 
-  await assert.rejects(
-    fetchUsage("expired-token"),
-    /API呼び出しに失敗しました \(401\): unauthorized/,
-  );
+  await assert.rejects(fetchUsage("expired-token"), (error) => {
+    assert.ok(isUsageApiError(error));
+    assert.equal(error.status, 401);
+    assert.equal(error.responseText, "unauthorized");
+    assert.match(
+      error.message,
+      /API呼び出しに失敗しました \(401\): unauthorized/,
+    );
+    return true;
+  });
 });
 
 test("fetchUsage aborts requests that exceed the timeout", async () => {

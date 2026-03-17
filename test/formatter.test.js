@@ -3,6 +3,7 @@ import test from "node:test";
 import {
   formatFallbackOutput,
   formatOutput,
+  formatRateLimitOutput,
   formatResetTimes,
 } from "../dist/formatter.js";
 
@@ -99,4 +100,5 @@ test("formatOutput and formatFallbackOutput keep the statusline shape", () => {
   );
 
   assert.equal(formatFallbackOutput(), "5h:--(-%) | 7d:--(-%)");
+  assert.equal(formatRateLimitOutput(), "[429 error]");
 });

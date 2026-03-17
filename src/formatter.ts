@@ -96,3 +96,10 @@ export function formatOutput(times: ResetTimes): string {
 export function formatFallbackOutput(): string {
   return "5h:--(-%) | 7d:--(-%)";
 }
+
+/**
+ * APIレート制限時の出力を生成
+ */
+export function formatRateLimitOutput(): string {
+  return "[429 error]";
+}

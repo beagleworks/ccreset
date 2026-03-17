@@ -9,6 +9,32 @@ interface FetchUsageOptions {
   timeoutMs?: number;
 }
 
+export interface UsageApiError extends Error {
+  status: number;
+  responseText: string;
+}
+
+function createUsageApiError(
+  status: number,
+  responseText: string,
+): UsageApiError {
+  const error = new Error(
+    `API呼び出しに失敗しました (${status}): ${responseText}`
+  ) as UsageApiError;
+  error.name = "UsageApiError";
+  error.status = status;
+  error.responseText = responseText;
+  return error;
+}
+
+export function isUsageApiError(error: unknown): error is UsageApiError {
+  return (
+    error instanceof Error &&
+    typeof (error as Partial<UsageApiError>).status === "number" &&
+    typeof (error as Partial<UsageApiError>).responseText === "string"
+  );
+}
+
 /**
  * Claude Code の使用量情報を取得
  */
@@ -33,9 +59,7 @@ export async function fetchUsage(
 
     if (!response.ok) {
       const errorText = await response.text();
-      throw new Error(
-        `API呼び出しに失敗しました (${response.status}): ${errorText}`
-      );
+      throw createUsageApiError(response.status, errorText);
     }
 
     return response.json() as Promise<UsageResponse>;
