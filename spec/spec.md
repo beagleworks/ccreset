@@ -112,7 +112,7 @@ GET https://api.anthropic.com/api/oauth/usage
 
 ### TTL
 
-- 成功レスポンスの fresh TTL は 60 秒
+- 成功レスポンスの fresh TTL は 180 秒
 - API が 429 を返した場合は 300 秒間の再試行抑止を行う
 - 直近の成功レスポンスは 30 分間 stale として保持してよい
 

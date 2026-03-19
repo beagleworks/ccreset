@@ -7,7 +7,7 @@ import type {
   UsageResponse,
 } from "./types.js";
 
-export const SUCCESS_CACHE_TTL_MS = 60 * 1000;
+export const SUCCESS_CACHE_TTL_MS = 180 * 1000;
 export const STALE_CACHE_TTL_MS = 30 * 60 * 1000;
 export const RATE_LIMIT_BACKOFF_MS = 5 * 60 * 1000;
 

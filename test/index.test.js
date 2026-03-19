@@ -18,6 +18,11 @@ test("run outputs formatted statusline text on success", async () => {
   Date.now = () => now;
 
   await run({
+    loadCacheFn: async () => ({
+      version: 1,
+      lastSuccess: null,
+      rateLimitUntil: null,
+    }),
     getAccessTokenFn: async () => "test-token",
     fetchUsageFn: async () => ({
       five_hour: {
@@ -31,6 +36,7 @@ test("run outputs formatted statusline text on success", async () => {
       seven_day_oauth_apps: null,
       seven_day_opus: null,
     }),
+    saveCacheFn: async () => {},
     log: (message) => {
       logs.push(message);
     },
@@ -43,6 +49,11 @@ test("run falls back to placeholder output when dependencies fail", async () => 
   const logs = [];
 
   await run({
+    loadCacheFn: async () => ({
+      version: 1,
+      lastSuccess: null,
+      rateLimitUntil: null,
+    }),
     getAccessTokenFn: async () => {
       throw new Error("boom");
     },

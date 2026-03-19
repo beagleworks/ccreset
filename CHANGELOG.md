@@ -5,6 +5,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.3.1] - 2026-03-19
+
+### Changed
+
+- Increased usage cache fresh TTL from 60 seconds to 180 seconds to reduce 429 errors with multiple sessions
+
+### Fixed
+
+- Fixed tests reading real cache file instead of mock data, causing environment-dependent failures
+
 ## [1.3.0] - 2026-03-17
 
 ### Added
